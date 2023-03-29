@@ -85,7 +85,7 @@ public class EnemyAI : MonoBehaviour
         {
             ///Attack code here
             Vector3 obj_pos = transform.position + new Vector3(0, 1, 0);
-            GameObject obj =Instantiate(projectile, obj_pos, transform.rotation); 
+            GameObject obj = Instantiate(projectile, obj_pos, transform.rotation); 
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             rb.AddForce(rb.transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(rb.transform.up * 4f, ForceMode.Impulse);
