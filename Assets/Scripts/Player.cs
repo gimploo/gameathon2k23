@@ -4,17 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum AbilityType {
-    ROCK = 0,
-    PAPER = 1,
-    SCISSORS = 2,
+    ROCK        = 0,
+    PAPER       = 1,
+    SCISSORS    = 2,
 };
 
 public class Player : MonoBehaviour
 {
-    public float health;
+    private float maxHealth;
+    private float currentHealth;
     public bool isDead;
     public int deathCount;
     public int xp;
+    public int bulletDamage;
+
+    [SerializeField] public Image __healthbarSprite;
 
     public GameObject rockAbilityUI;
     public GameObject paperAbilityUI;
@@ -31,7 +35,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        health = 50;    
+        maxHealth = currentHealth = 50;    
         isDead = false;
         xp = 0;
         deathCount = 0;
@@ -48,12 +52,13 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int value)
     {
-        health -= value;
-        if (health <= 0)
+        currentHealth -= value;
+        if (currentHealth <= 0)
         {
             isDead = true;
             return;
         }
+        UpdateHealthBar();
     }
 
     public void GainXP(int value)
@@ -64,7 +69,6 @@ public class Player : MonoBehaviour
     public void UseAbility(AbilityType type)
     {
         if (!isAbilityActive[(int)type]) return;
-            Debug.Log(rockImage.color);
         switch(type)
         {
             case AbilityType.ROCK:
@@ -114,5 +118,18 @@ public class Player : MonoBehaviour
         {
             UseAbility(AbilityType.SCISSORS);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            TakeDamage(bulletDamage);
+        }
+    }
+
+    public void UpdateHealthBar()
+    {
+        __healthbarSprite.fillAmount = currentHealth / maxHealth;
     }
 }
