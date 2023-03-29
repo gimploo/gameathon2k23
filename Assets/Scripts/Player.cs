@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
                     break;
                     case "TurtleShell":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = true;
-                        Instantiate(rockEffect, hit.transform.position, Quaternion.identity);
+                        Instantiate(rockEffect, hit.transform.position + new Vector3(0, 1.0f, 0), Quaternion.identity);
                     break;
                 }
             break;
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
                 {
                     case "Slime":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = true;
-                        Instantiate(scissorEffect, hit.transform.position, Quaternion.identity);
+                        Instantiate(paperEffect, hit.transform.position, Quaternion.identity);
                     break;
                     case "Origami":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
                     break;
                     case "Origami":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = true;
-                        Instantiate(paperEffect, hit.transform.position, Quaternion.identity);
+                        Instantiate(scissorEffect, hit.transform.position, Quaternion.identity);
                     break;
                     case "TurtleShell":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;

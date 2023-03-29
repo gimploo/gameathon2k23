@@ -42,7 +42,8 @@ public class Level1HandlerScript : MonoBehaviour
 
     void Start()
     {
-        current_wave = 0;
+        Cursor.lockState = CursorLockMode.Locked;
+        current_wave = 1;
         total_waves = 5;
         spawnEnemies(3);
     }
@@ -61,6 +62,17 @@ public class Level1HandlerScript : MonoBehaviour
 
     void Update()
     {
+        if (enemiesLeft == 0) {
+            aWaveInProgress = false;
+            current_wave += 1;
+            UpdateWavePrompt();
+
+            if (current_wave == total_waves)
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
+
         if (!aWaveInProgress)
         {
             switch(current_wave)
@@ -82,22 +94,10 @@ public class Level1HandlerScript : MonoBehaviour
                 break;
             }
         }
-
-        if (enemiesLeft == 0) {
-            aWaveInProgress = false;
-            current_wave += 1;
-            UpdateWavePrompt();
-
-            if (current_wave >= total_waves)
-            {
-                SceneManager.LoadScene(0);
-            }
-        }
-        
     }
 
     void UpdateWavePrompt()
     {
-        wavePrompt.text = System.String.Format("Wave {0}/5", current_wave);
+        wavePrompt.text = $"Wave {current_wave}/5";
     }
 }

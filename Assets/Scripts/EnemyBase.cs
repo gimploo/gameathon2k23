@@ -60,7 +60,6 @@ public class EnemyBase : MonoBehaviour
     void Update()
     {
         if (isVulnerable) {
-            Debug.Log("is vulnerable");
             StartCoroutine(CooldownVulnerable());
         }
 
