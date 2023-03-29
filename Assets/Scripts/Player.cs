@@ -78,13 +78,13 @@ public class Player : MonoBehaviour
                 switch(hit.transform.tag)
                 {
                     case "Slime":
-                        Debug.Log("hit slime");
+                        hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;
                     break;
                     case "Origami":
-                        Debug.Log("hit origami");
+                        hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;
                     break;
                     case "TurtleShell":
-                        Debug.Log("hit turtleshell");
+                        hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = true;
                     break;
                 }
             break;
@@ -93,13 +93,13 @@ public class Player : MonoBehaviour
                 switch(hit.transform.tag)
                 {
                     case "Slime":
-                        Debug.Log("hit slime");
+                        hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = true;
                     break;
                     case "Origami":
-                        Debug.Log("hit origami");
+                        hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;
                     break;
                     case "TurtleShell":
-                        Debug.Log("hit turtleshell");
+                        hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;
                     break;
                 }
             break;
@@ -108,13 +108,13 @@ public class Player : MonoBehaviour
                 switch(hit.transform.tag)
                 {
                     case "Slime":
-                        Debug.Log("hit slime");
+                        hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;
                     break;
                     case "Origami":
-                        Debug.Log("hit origami");
+                        hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = true;
                     break;
                     case "TurtleShell":
-                        Debug.Log("hit turtleshell");
+                        hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;
                     break;
                 }
             break;

@@ -94,7 +94,7 @@ public class EnemyAI : MonoBehaviour
             rb.AddForce(rb.transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(rb.transform.up * 4f, ForceMode.Impulse);
 
-            Destroy(obj);
+            Destroy(obj, 2);
             ///End of attack code
 
             alreadyAttacked = true;
