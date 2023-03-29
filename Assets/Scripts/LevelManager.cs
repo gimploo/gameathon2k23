@@ -8,6 +8,10 @@ public class LevelManager : MonoBehaviour
     public Scene level1;
     public void loadLevel1()
     {
-        SceneManager.LoadScene(level1.name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

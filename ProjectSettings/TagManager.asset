@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - Bullet
+  - Slime
+  - TurtleShell
+  - Origami
   layers:
   - Default
   - TransparentFX

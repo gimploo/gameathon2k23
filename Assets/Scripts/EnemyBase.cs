@@ -7,7 +7,9 @@ public class EnemyBase : MonoBehaviour
     private int maxhealth;
     private int health;
 
-    private bool isVulnerable = false;
+    public Level1HandlerScript l1Script;
+
+    public bool isVulnerable = false;
     public int bulletDamageDelta = 2;
     public int abilityDamage = 3;
     public int vulnerableTimeDelta = 2;
@@ -27,6 +29,8 @@ public class EnemyBase : MonoBehaviour
                 maxhealth  = health = 14;
             break;
         }
+
+        l1Script = FindObjectOfType<Level1HandlerScript>();
     }
 
     void TakeDamage()
@@ -52,11 +56,15 @@ public class EnemyBase : MonoBehaviour
 
     void Update()
     {
-        if (isVulnerable)
+        if (isVulnerable) {
+            Debug.Log("is vulnerable");
             StartCoroutine(CooldownVulnerable());
+        }
 
-        if (health <= 0)
+        if (health <= 0) {
             Destroy(gameObject);
+            l1Script.enemiesLeft -= 1;
+        }
     }
 
     IEnumerator CooldownVulnerable()
