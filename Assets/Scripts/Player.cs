@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
 
     public GameObject paperEffect;
     public GameObject rockEffect;
+    public GameObject scissorEffect;
 
     private bool[] isAbilityActive = new bool[3];
 
@@ -99,6 +100,7 @@ public class Player : MonoBehaviour
                 {
                     case "Slime":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = true;
+                        Instantiate(scissorEffect, hit.transform.position, Quaternion.identity);
                     break;
                     case "Origami":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;

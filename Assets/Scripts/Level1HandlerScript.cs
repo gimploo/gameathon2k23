@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Level1HandlerScript : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Level1HandlerScript : MonoBehaviour
     public GameObject enemy1Prefab;
     public GameObject enemy2Prefab;
     public GameObject enemy3Prefab;
+
+    public TMP_Text wavePrompt;
 
     private bool aWaveInProgress;
 
@@ -83,6 +86,7 @@ public class Level1HandlerScript : MonoBehaviour
         if (enemiesLeft == 0) {
             aWaveInProgress = false;
             current_wave += 1;
+            UpdateWavePrompt();
 
             if (current_wave >= total_waves)
             {
@@ -90,5 +94,10 @@ public class Level1HandlerScript : MonoBehaviour
             }
         }
         
+    }
+
+    void UpdateWavePrompt()
+    {
+        wavePrompt.text = System.String.Format("Wave {0}/5", current_wave);
     }
 }
