@@ -66,7 +66,6 @@ public class GunShoot : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletprefab, hit.point, Quaternion.LookRotation(hit.normal));
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
-            Destroy(bullet, 2);
             currentBulletsLeft -= 1;
             updateBulletPrompt();
             isGunAvailable = false;
