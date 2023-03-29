@@ -15,6 +15,8 @@ public class EnemyBase : MonoBehaviour
     public int vulnerableTimeDelta = 2;
     public int gainHealthDelta = 5;
 
+    public GameObject killEffect;
+
     private void Awake()
     {
         switch(gameObject.tag)
@@ -46,6 +48,7 @@ public class EnemyBase : MonoBehaviour
         if (col.gameObject.tag == "Bullet")
         {
             TakeDamage();
+            Destroy(col.gameObject);
         }
     }
 
@@ -62,6 +65,7 @@ public class EnemyBase : MonoBehaviour
         }
 
         if (health <= 0) {
+            Instantiate(killEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
             l1Script.enemiesLeft -= 1;
         }

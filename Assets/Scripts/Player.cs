@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum AbilityType {
     ROCK        = 0,
@@ -30,6 +31,9 @@ public class Player : MonoBehaviour
 
     private RaycastHit hit;
     public int cooldownDuration = 4;
+
+    public GameObject paperEffect;
+    public GameObject rockEffect;
 
     private bool[] isAbilityActive = new bool[3];
 
@@ -85,6 +89,7 @@ public class Player : MonoBehaviour
                     break;
                     case "TurtleShell":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = true;
+                        Instantiate(rockEffect, hit.transform.position, Quaternion.identity);
                     break;
                 }
             break;
@@ -112,6 +117,7 @@ public class Player : MonoBehaviour
                     break;
                     case "Origami":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = true;
+                        Instantiate(paperEffect, hit.transform.position, Quaternion.identity);
                     break;
                     case "TurtleShell":
                         hit.transform.gameObject.GetComponent<EnemyBase>().isVulnerable = false;
@@ -143,6 +149,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (isDead) {
+            SceneManager.LoadScene(0);
+        }
+
         Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 500);
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -164,6 +174,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             TakeDamage(bulletDamage);
+            Destroy(collision.gameObject);
         }
     }
 

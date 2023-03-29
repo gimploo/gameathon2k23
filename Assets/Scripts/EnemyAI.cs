@@ -22,18 +22,19 @@ public class EnemyAI : MonoBehaviour
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks;
+    private float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
 
     //States
-    private float sightRange = 16.0f, attackRange = 6.0f;
+    private float sightRange = 100.0f, attackRange = 25.0f;
     public bool playerInSightRange, playerInAttackRange;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        timeBetweenAttacks = 0.6f;
     }
 
     private void Update()
@@ -88,11 +89,11 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             ///Attack code here
-            Vector3 obj_pos = transform.position + new Vector3(0, 1, 0);
+            Vector3 obj_pos = transform.position + new Vector3(0, 2.5f, 0);
             GameObject obj = Instantiate(projectile, obj_pos, transform.rotation); 
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             rb.AddForce(rb.transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(rb.transform.up * 4f, ForceMode.Impulse);
+            rb.AddForce(rb.transform.up * 1.5f, ForceMode.Impulse);
 
             Destroy(obj, 2);
             ///End of attack code

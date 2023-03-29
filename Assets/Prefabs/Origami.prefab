@@ -192,7 +192,7 @@ MonoBehaviour:
     m_Bits: 256
   walkPoint: {x: 0, y: 0.01, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 0.5
+  timeBetweenAttacks: 0.23
   projectile: {fileID: 2815314982869767857, guid: 30cf9f6e6d1ac4c47b79c4d041302e2c,
     type: 3}
   playerInSightRange: 0
@@ -216,7 +216,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 5
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &5247043190808983536
@@ -231,8 +231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ccd151ff78717449dff0e10560605f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  l1Script: {fileID: 0}
   isVulnerable: 0
   bulletDamageDelta: 2
   abilityDamage: 3
   vulnerableTimeDelta: 2
   gainHealthDelta: 5
+  killEffect: {fileID: 8349256800718499259, guid: 15db37253dceff68b9b5b749e8435f16,
+    type: 3}
