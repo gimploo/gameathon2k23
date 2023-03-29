@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public int xp;
     public int bulletDamage;
 
-    [SerializeField] public Image __healthbarSprite;
+    [SerializeField] private Image __healthbarSprite;
 
     public GameObject rockAbilityUI;
     public GameObject paperAbilityUI;
@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     private RawImage paperImage;
     private RawImage scissorsImage;
 
+    private RaycastHit hit;
     public int cooldownDuration = 4;
 
     private bool[] isAbilityActive = new bool[3];
@@ -69,16 +70,53 @@ public class Player : MonoBehaviour
     public void UseAbility(AbilityType type)
     {
         if (!isAbilityActive[(int)type]) return;
+
         switch(type)
         {
             case AbilityType.ROCK:
                 rockImage.color = new Color(rockImage.color.r, rockImage.color.g, rockImage.color.b, 0.5f);
+                switch(hit.transform.tag)
+                {
+                    case "Slime":
+                        Debug.Log("hit slime");
+                    break;
+                    case "Origami":
+                        Debug.Log("hit origami");
+                    break;
+                    case "TurtleShell":
+                        Debug.Log("hit turtleshell");
+                    break;
+                }
             break;
             case AbilityType.PAPER:
                 paperImage.color = new Color(paperImage.color.r, paperImage.color.g, paperImage.color.b, 0.5f);
+                switch(hit.transform.tag)
+                {
+                    case "Slime":
+                        Debug.Log("hit slime");
+                    break;
+                    case "Origami":
+                        Debug.Log("hit origami");
+                    break;
+                    case "TurtleShell":
+                        Debug.Log("hit turtleshell");
+                    break;
+                }
             break;
             case AbilityType.SCISSORS:
                 scissorsImage.color = new Color(scissorsImage.color.r, scissorsImage.color.g, scissorsImage.color.b, 0.5f);
+                switch(hit.transform.tag)
+                {
+                    case "Slime":
+                        Debug.Log("hit slime");
+                    break;
+                    case "Origami":
+                        Debug.Log("hit origami");
+                    break;
+                    case "TurtleShell":
+                        Debug.Log("hit turtleshell");
+                    break;
+                }
             break;
         }
         StartCoroutine(StartCooldown(type));
@@ -105,6 +143,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 500);
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
